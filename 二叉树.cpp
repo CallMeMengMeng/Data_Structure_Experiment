@@ -125,7 +125,7 @@ void PreOrderTraverse1(BiTree T)//先序非递归遍历二叉树算法(利用栈
 	SqStack R;
     BiTree p=T;
     InitStack(&R);
-     if(p) Push(&R,*p);
+    if(p) Push(&R,*p);
     while(!StackEmpty(&R))
     {
 		p=(BiTNode *)malloc(sizeof(BiTNode));
@@ -146,7 +146,7 @@ void LevelOrderTraverse(BiTree T)// 层序非递归遍历二叉树算法(利用�
     while(Q.front!=Q.rear)
     {
         T=Q.base[Q.front];//循环队列，用T返回队列头指针
-	DeQueue(&Q,&P);
+		DeQueue(&Q,&P);
         printf("%c",T->data);
         if (P->lChild) EnQueue(&Q, P->lChild); // 若存在左孩子，左孩子进队列
         if (P->rChild) EnQueue(&Q, P->rChild); // 若存在右孩子，右孩子进队列

@@ -17,19 +17,19 @@ typedef struct SqStack
     BiTNode *base;
     BiTNode *top;
     int stacksize;
-} SqStack;//Õ»ÀàĞÍ
-void InitStack(SqStack *S)//´´½¨Õ»
+} SqStack;//æ ˆç±»å‹
+void InitStack(SqStack *S)//åˆ›å»ºæ ˆ
 {
     S->base=(BiTNode*)malloc(STACK_INIT_SIZE*sizeof(BiTNode));
     S->top=S->base;
     S->stacksize=STACK_INIT_SIZE;
 }
-int StackEmpty(SqStack *S)//ÅĞ¶ÏÕ»ÊÇ·ñ·Ç¿Õ
+int StackEmpty(SqStack *S)//åˆ¤æ–­æ ˆæ˜¯å¦éç©º
 {
     if(S->top == S->base ) return OK;
     else return ERROR;
 }
-void Push(SqStack *S,BiTNode e)//½øÕ»
+void Push(SqStack *S,BiTNode e)//è¿›æ ˆ
 {
     if(S->top-S->base>=S->stacksize)
     {
@@ -41,45 +41,45 @@ void Push(SqStack *S,BiTNode e)//½øÕ»
     *(S->top)=e;
     S->top++;
 }
-BiTNode Pop(SqStack *S)//³öÕ»
+BiTNode Pop(SqStack *S)//å‡ºæ ˆ
 {
     S->top --;
     return *S->top;
 }
-typedef BiTree QElemType; //ÉèÕ»ÔªËØÎª¶ş²æÊ÷µÄÖ¸ÕëÀàĞÍ
+typedef BiTree QElemType; //è®¾æ ˆå…ƒç´ ä¸ºäºŒå‰æ ‘çš„æŒ‡é’ˆç±»å‹
 typedef struct
 {
    QElemType *base;
-   int front; //Í·Ö¸Õë,Èô¶ÓÁĞ²»¿Õ,Ö¸Ïò¶ÓÁĞÍ·ÔªËØ
-   int rear;   //Î²Ö¸Õë,Èô¶ÓÁĞ²»¿Õ,Ö¸Ïò¶ÓÁĞÎ²ÔªËØµÄÏÂÒ»¸öÎ»ÖÃ
+   int front; //å¤´æŒ‡é’ˆ,è‹¥é˜Ÿåˆ—ä¸ç©º,æŒ‡å‘é˜Ÿåˆ—å¤´å…ƒç´ 
+   int rear;   //å°¾æŒ‡é’ˆ,è‹¥é˜Ÿåˆ—ä¸ç©º,æŒ‡å‘é˜Ÿåˆ—å°¾å…ƒç´ çš„ä¸‹ä¸€ä¸ªä½ç½®
 }SqQueue;
-int InitQueue(SqQueue *Q)//´´½¨¶ÓÁĞ
+int InitQueue(SqQueue *Q)//åˆ›å»ºé˜Ÿåˆ—
 {
 	(*Q).base=(QElemType *)malloc(MAXQSIZE*sizeof(QElemType));
     if(!(*Q).base) exit(OVERFLOW);
     (*Q).front=(*Q).rear=0;
     return OK;
 }
-int QueueEmpty(SqQueue Q)//ÅĞ¶Ï¶ÓÁĞÊÇ·ñÎª¿Õ
+int QueueEmpty(SqQueue Q)//åˆ¤æ–­é˜Ÿåˆ—æ˜¯å¦ä¸ºç©º
 {
 	if(Q.front==Q.rear) return OK;
     else return ERROR;
 }
-int EnQueue(SqQueue *Q,QElemType e) //²åÈëÔªËØeÎªQµÄĞÂµÄ¶ÓÎ²ÔªËØ
+int EnQueue(SqQueue *Q,QElemType e) //æ’å…¥å…ƒç´ eä¸ºQçš„æ–°çš„é˜Ÿå°¾å…ƒç´ 
 {
 	if(((*Q).rear+1)%MAXQSIZE==(*Q).front) return ERROR;
     (*Q).base[(*Q).rear]=e;
     (*Q).rear=((*Q).rear+1)%MAXQSIZE;
     return OK;
 }
-int DeQueue(SqQueue *Q,QElemType *e)//É¾³ıQµÄ¶ÓÍ·ÔªËØ,ÓÃe·µ»ØÆäÖµ
+int DeQueue(SqQueue *Q,QElemType *e)//åˆ é™¤Qçš„é˜Ÿå¤´å…ƒç´ ,ç”¨eè¿”å›å…¶å€¼
 {
 	if((*Q).front==(*Q).rear) return ERROR;
     *e=(*Q).base[(*Q).front];
     (*Q).front=((*Q).front+1)%MAXQSIZE;
     return OK;
 }
-int CreateBiTree(BiTree &T)//°´ÏÈĞò´ÎĞòÊäÈë¶ş²æÖĞÊ÷½áµãµÄÖµ£¬#±íÊ¾¿ÕÊ÷¹¹Ôì
+int CreateBiTree(BiTree &T)//æŒ‰å…ˆåºæ¬¡åºè¾“å…¥äºŒå‰ä¸­æ ‘ç»“ç‚¹çš„å€¼ï¼Œ#è¡¨ç¤ºç©ºæ ‘æ„é€ 
 {
 	char ch;
 	scanf("%c",&ch);
@@ -93,7 +93,7 @@ int CreateBiTree(BiTree &T)//°´ÏÈĞò´ÎĞòÊäÈë¶ş²æÖĞÊ÷½áµãµÄÖµ£¬#±íÊ¾¿ÕÊ÷¹¹Ôì
     }
     return OK;
 }
-void PreOrderTraverse(BiTree T)//ÏÈĞò±éÀú¶ş²æÊ÷µÄµİ¹éËã·¨
+void PreOrderTraverse(BiTree T)//å…ˆåºéå†äºŒå‰æ ‘çš„é€’å½’ç®—æ³•
 {
 	if(T)
 	{
@@ -102,7 +102,7 @@ void PreOrderTraverse(BiTree T)//ÏÈĞò±éÀú¶ş²æÊ÷µÄµİ¹éËã·¨
         PreOrderTraverse(T->rChild);
     }
 }
-void InOrderTraverse(BiTree T)//ÖĞĞò±éÀú¶ş²æÊ÷µÄµİ¹éËã·¨
+void InOrderTraverse(BiTree T)//ä¸­åºéå†äºŒå‰æ ‘çš„é€’å½’ç®—æ³•
 {
 	if(T)
 	{
@@ -111,7 +111,7 @@ void InOrderTraverse(BiTree T)//ÖĞĞò±éÀú¶ş²æÊ÷µÄµİ¹éËã·¨
         InOrderTraverse(T->rChild);
     }
 }
-void PostOrderTraverse(BiTree T)//ºóĞò±éÀú¶ş²æÊ÷µÄµİ¹éËã·¨
+void PostOrderTraverse(BiTree T)//ååºéå†äºŒå‰æ ‘çš„é€’å½’ç®—æ³•
 {
 	if(T)
 	{
@@ -120,7 +120,7 @@ void PostOrderTraverse(BiTree T)//ºóĞò±éÀú¶ş²æÊ÷µÄµİ¹éËã·¨
         printf("%c",T->data);
     }
 }
-void PreOrderTraverse1(BiTree T)//ÏÈĞò·Çµİ¹é±éÀú¶ş²æÊ÷Ëã·¨(ÀûÓÃÕ»)
+void PreOrderTraverse1(BiTree T)//å…ˆåºéé€’å½’éå†äºŒå‰æ ‘ç®—æ³•(åˆ©ç”¨æ ˆ)
 {
 	SqStack R;
     BiTree p=T;
@@ -137,35 +137,35 @@ void PreOrderTraverse1(BiTree T)//ÏÈĞò·Çµİ¹é±éÀú¶ş²æÊ÷Ëã·¨(ÀûÓÃÕ»)
         Push(&R,*p->lChild);
     }
 }
-void LevelOrderTraverse(BiTree T)// ²ãĞò·Çµİ¹é±éÀú¶ş²æÊ÷Ëã·¨(ÀûÓÃ¶ÓÁĞ)
+void LevelOrderTraverse(BiTree T)// å±‚åºéé€’å½’éå†äºŒå‰æ ‘ç®—æ³•(åˆ©ç”¨é˜Ÿåˆ—)
 {
 	SqQueue Q;
     BiTree P;
-    InitQueue(&Q);// ³õÊ¼»¯¶ÓÁĞ
+    InitQueue(&Q);// åˆå§‹åŒ–é˜Ÿåˆ—
     if(T) EnQueue(&Q,T);
     while(Q.front!=Q.rear)
     {
-        T=Q.base[Q.front];//Ñ­»·¶ÓÁĞ£¬ÓÃT·µ»Ø¶ÓÁĞÍ·Ö¸Õë
-		DeQueue(&Q,&P);
+        T=Q.base[Q.front];//å¾ªç¯é˜Ÿåˆ—ï¼Œç”¨Tè¿”å›é˜Ÿåˆ—å¤´æŒ‡é’ˆ
+	DeQueue(&Q,&P);
         printf("%c",T->data);
-        if (P->lChild) EnQueue(&Q, P->lChild); // Èô´æÔÚ×óº¢×Ó£¬×óº¢×Ó½ø¶ÓÁĞ
-        if (P->rChild) EnQueue(&Q, P->rChild); // Èô´æÔÚÓÒº¢×Ó£¬ÓÒº¢×Ó½ø¶ÓÁĞ
+        if (P->lChild) EnQueue(&Q, P->lChild); // è‹¥å­˜åœ¨å·¦å­©å­ï¼Œå·¦å­©å­è¿›é˜Ÿåˆ—
+        if (P->rChild) EnQueue(&Q, P->rChild); // è‹¥å­˜åœ¨å³å­©å­ï¼Œå³å­©å­è¿›é˜Ÿåˆ—
     }
 }
-int main()//Ö÷º¯Êı·Ö±ğÊµÏÖ½¨Á¢²¢Êä³öÏÈ¡¢ÖĞ¡¢ºóĞò±éÀú¶ş²æÊ÷
+int main()//ä¸»å‡½æ•°åˆ†åˆ«å®ç°å»ºç«‹å¹¶è¾“å‡ºå…ˆã€ä¸­ã€ååºéå†äºŒå‰æ ‘
 {
 	BiTree T;
-	printf("°´ÏÈĞòÊäÈë¶ş²æÊ÷ÖĞ½áµãµÄÖµ£¬#±íÊ¾¿Õ½áµã:\n");
+	printf("æŒ‰å…ˆåºè¾“å…¥äºŒå‰æ ‘ä¸­ç»“ç‚¹çš„å€¼ï¼Œ#è¡¨ç¤ºç©ºç»“ç‚¹:\n");
 	CreateBiTree(T);
-    printf("ÏÈĞòµİ¹é±éÀú¶ş²æÊ÷:");
+    printf("å…ˆåºé€’å½’éå†äºŒå‰æ ‘:");
     PreOrderTraverse(T);
-    printf("\nÖĞĞòµİ¹é±éÀú¶ş²æÊ÷:");
+    printf("\nä¸­åºé€’å½’éå†äºŒå‰æ ‘:");
     InOrderTraverse(T);
-    printf("\nºóĞòµİ¹é±éÀú¶ş²æÊ÷:");
+    printf("\nååºé€’å½’éå†äºŒå‰æ ‘:");
     PostOrderTraverse(T);
-	printf("\nÏÈĞò·Çµİ¹é±éÀú¶ş²æÊ÷:");
+	printf("\nå…ˆåºéé€’å½’éå†äºŒå‰æ ‘:");
 	PreOrderTraverse1(T);
-	printf("\n²ãĞò±éÀú¶ş²æÊ÷:");
+	printf("\nå±‚åºéå†äºŒå‰æ ‘:");
 	LevelOrderTraverse(T);
 	printf("\n");
 }
